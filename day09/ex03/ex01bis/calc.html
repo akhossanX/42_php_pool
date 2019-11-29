@@ -1,0 +1,110 @@
+<html lang="en">
+<head>
+    <title>Ex01: It's over 9000</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<style>
+    #container{
+        position: fixed;
+        top: 27vh;
+        left: 18vw;
+        margin: 0 auto;
+    }
+    #left{
+        width: 100px;
+        height: 50px;
+        margin: 0 20px 0 20px;
+        border-radius: 10px;
+        border-color: blue;
+    }
+    #right{
+        width: 100px;
+        height: 50px;
+        margin: 0 20px 0 20px;
+        border-radius: 10px;
+        border-color: blue;
+    }
+    #ok{
+        font-size: 20px;
+    }
+    body{
+        background: rgb(2,0,36);
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(237,255,179,1) 0%, rgba(177,233,245,1) 100%);
+    }
+    .header{
+        padding: 60px;
+        background: #1abc9c;
+        border-radius: 50%;
+        text-align: center;
+        color: white;
+        font-size: 30px;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<body>
+    <div id="container">
+        <div class="header">
+            <h1>Dummy Calculator!</h1>
+            <input type="text" id="left">
+            <select name="" id="op">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+                <option value="%">%</option>
+                <input type="text" id="right">
+                <input type="submit" id="ok" value="Try me!">
+            </select>
+        </div>
+    </div>
+
+    <script>
+
+        // var ok = document.querySelector('#ok');
+        // ok.addEventListener('click', tryMe);
+        ok = $('#ok');
+        ok.click(tryMe);
+        setInterval(function(){
+            alert('Please use me...');
+        }, 30000);
+
+        function tryMe()
+        {
+            // var lh = document.querySelector('#left').value;
+            // var rh = document.querySelector('#right').value;
+            var lh = $('#left').val();
+            var rh = $('#right').val();
+
+            var ilh = parseInt(lh);
+            var irh = parseInt(rh);
+
+            // var op = document.querySelector('#op');
+            var op = $('#op option:selected').val();
+            console.log(op);
+            // op = op.options[op.selectedIndex].text;
+            if (irh < 0 || ilh < 0 || ilh != lh || irh != rh || rh === '' || lh === '')
+            {
+                alert('Error :(');
+                return ;
+            }
+            if ((op == '/' || op == '%') && rh == 0)
+            {
+                alert('It\'s over 9000');
+                console.log('It\'s over 9000');
+                return ;
+            }
+            switch(op)
+            {
+                case '+': console.log(ilh + irh); alert(ilh + irh); break;
+                case '-': console.log(ilh - irh); alert(ilh - irh); break;
+                case '*': console.log(ilh * irh); alert(ilh * irh); break;
+                case '/': console.log(ilh / irh); alert(ilh / irh); break;
+                case '%': console.log(ilh % irh); alert(ilh % irh); break;
+
+            }
+        }
+    </script>
+
+</body>
+</html>
